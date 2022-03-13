@@ -11,6 +11,7 @@ const StyledInput = styled.input`
   padding:5px;
   border: 1px solid #111;
   color:#111;
+  font-family: 'Do Hyeon';
 
   ::placeholder {
     color: #a5a5a5;

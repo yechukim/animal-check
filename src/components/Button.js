@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
-
+ font-family: 'Do Hyeon';
   padding:10px 25px;
   font-size:0.95em;
   margin:10px 0;
