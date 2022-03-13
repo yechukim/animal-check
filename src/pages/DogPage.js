@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { calculateBMI } from "../common/animals";
 import Button from "../components/Button";
 import FormWrapper from "../components/FormWrapper";
 import Input from "../components/Input";
@@ -6,7 +7,7 @@ import Input from "../components/Input";
 function DogPage() {
   const [height, setHeight] = useState('')
   const [weight, setWeight] = useState('')
-
+  const [result, setResult] = useState('')
   const handleDogChange = (e) => {
     const { name, value } = e.target
     if (name === 'height') {
@@ -15,8 +16,11 @@ function DogPage() {
       setWeight(value)
     }
   }
-  const handleDogObesity = (e) => {
-
+  const handleDogObesity = (height, weight) => {
+    const bmi = calculateBMI(height, weight)
+    setResult(bmi)
+    setHeight('')
+    setWeight('')
   }
   return (
     <FormWrapper>
@@ -35,8 +39,9 @@ function DogPage() {
         onChange={handleDogChange}
         label='몸무게(kg)' />
 
-      <Button name='비만도 확인 🐶' onClick={handleDogObesity} />
-
+      <Button name='비만도 확인 🐶' onClick={() => handleDogObesity(height, weight)} />
+      {result &&
+        <p>비만도는 {result} 입니다 </p>}
     </FormWrapper>);
 }
 

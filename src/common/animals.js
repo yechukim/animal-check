@@ -1,4 +1,7 @@
-const DOG = '강아지'
-const CAT = '고양이'
+export const DOG = '강아지'
+export const CAT = '고양이'
 
-export { DOG, CAT }
+export const calculateBMI = (height, weight) => {
+  const bmi = weight / (height / 100) ** 2
+  return bmi.toFixed(2)
+}
