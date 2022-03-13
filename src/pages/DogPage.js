@@ -8,7 +8,9 @@ function DogPage() {
   const [height, setHeight] = useState('')
   const [weight, setWeight] = useState('')
   const [result, setResult] = useState('')
+
   const handleDogChange = (e) => {
+
     const { name, value } = e.target
     if (name === 'height') {
       setHeight(value)
@@ -17,6 +19,7 @@ function DogPage() {
     }
   }
   const handleDogObesity = (height, weight) => {
+    if (isNaN(height) || isNaN(weight)) return alert('숫자를 입력하세요 ')
     const bmi = calculateBMI(height, weight)
     setResult(bmi)
     setHeight('')
@@ -24,7 +27,6 @@ function DogPage() {
   }
   return (
     <FormWrapper>
-
       <Input
         placeholder='키를 입력하세요 '
         value={height}
