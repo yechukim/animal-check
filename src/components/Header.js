@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { DOG, CAT } from '../constants'
+import { getAnimalEmoji } from '../utils/calc';
+import UseAnimations from 'react-useanimations'
+import playPause from 'react-useanimations/lib/playPause'
+import musicSrc from '../assets/fun.mp3'
 
 const Wrapper = styled.div`
   height:64px;
@@ -9,6 +13,7 @@ const Wrapper = styled.div`
   background-color:#F7C78C;
   display:flex;
   align-items:center;
+  position:relative;
 `
 const Profile = styled.div`
   width:50px;
@@ -37,15 +42,21 @@ const Menu = styled(Link)`
       }
 `
 
-const getAnimalEmoji = (name) => {
-  if (name === DOG) return '🐶'
-  if (name === CAT) return '🐱'
-  return '🙈'
-}
+const MusicWrapper = styled.div`
+  position:absolute;
+  right:100px;
+  cursor:pointer;
+`
 
 function Header() {
 
   const [whatClick, setWhatClicked] = useState('');
+  const [isMuted, setIsMuted] = useState(true);
+  const audioRef = useRef()
+
+  useEffect(() => {
+    audioRef.current.volume = 0.3
+  }, [])
 
   const handleClick = e => {
 
@@ -59,6 +70,10 @@ function Header() {
     return setWhatClicked('')
   }
 
+  const handleAudio = () => {
+    setIsMuted(!isMuted)
+    isMuted ? audioRef.current.play() : audioRef.current.pause()
+  }
 
   return (
     <Wrapper onClick={handleClick}>
@@ -66,11 +81,26 @@ function Header() {
         홈으로
       </Menu>
       <Menu to="/dog" >
-        강아지
+        {DOG}
       </Menu>
       <Menu to="/cat">
-        고양이
+        {CAT}
       </Menu>
+      <MusicWrapper>
+        <audio
+          loop
+          ref={audioRef}
+          src={musicSrc}
+          muted={isMuted}>
+        </audio>
+        <UseAnimations
+          strokeColor='#fff'
+          reverse={true}
+          onClick={handleAudio}
+          size={24}
+          animation={playPause}
+        />
+      </MusicWrapper>
       <Profile>
         {getAnimalEmoji(whatClick)}
       </Profile>
