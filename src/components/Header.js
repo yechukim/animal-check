@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { DOG, CAT } from '../common/animals'
+import { DOG, CAT } from '../constants'
 
 const Wrapper = styled.div`
   height:64px;
