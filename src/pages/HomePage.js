@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BMIForm from '../components/BMIForm';
 import styled from 'styled-components'
 
-const Title = styled.p`
+const Title = styled.div`
   text-align:center;
   margin-top:50px;
   font-size:1.2em;
@@ -25,7 +25,10 @@ function HomePage() {
 
   return (
     <div>
-      <Title>애기들 비만도보다 내 비만도를 먼저 확인해보고 싶다면?</Title>
+      <Title>애기들 비만도보다 내 비만도를 먼저 확인해보고 싶다면?
+        <div> 저는 안 볼게요! 🙈</div>
+      </Title>
+
       <BMIForm
         height={height}
         weight={weight}

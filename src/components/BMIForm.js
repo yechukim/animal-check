@@ -3,6 +3,7 @@ import { calculateBMI } from "../utils/calc";
 import Button from "../components/Button";
 import FormWrapper from "../components/FormWrapper";
 import Input from "../components/Input";
+import { getAnimalEmoji } from "../utils/calc";
 
 function BMIForm({ type, height, weight, handleChange }) {
 
@@ -30,7 +31,8 @@ function BMIForm({ type, height, weight, handleChange }) {
         onChange={handleChange}
         label='몸무게(kg)' />
 
-      <Button name='비만도 확인 🐶' onClick={() => handleBMI(height, weight)} />
+      <Button name={`비만도 확인 ${getAnimalEmoji(type)}`}
+        onClick={() => handleBMI(height, weight)} />
       {result &&
         <p>비만도는 {result} 입니다 </p>}
     </FormWrapper>
