@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calculateBMI } from "../utils/calc";
+import { calculateBMI, generateSprinkles } from "../utils/calc";
 import Button from "./Button";
 import FormWrapper from "./FormWrapper";
 import Input from "./Input";
@@ -8,6 +8,7 @@ import { getAnimalEmoji } from "../utils/calc";
 function BMIForm({ type, height, weight, handleChange }) {
 
   const [result, setResult] = useState('')
+
 
   const handleBMI = (height, weight, e) => {
     if (!height || !weight) return alert('키와 몸무게를 입력하세요 ')
@@ -18,7 +19,10 @@ function BMIForm({ type, height, weight, handleChange }) {
     const bmi = calculateBMI(height, weight)
     setResult(bmi)
 
+    const sprinkleType = getAnimalEmoji(type)
+    generateSprinkles(sprinkleType)
   }
+
   return (
     <FormWrapper>
       <Input
